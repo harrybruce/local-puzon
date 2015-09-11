@@ -1,20 +1,16 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 
-var LocalPuzon = function(opts) {
-    this.initialize.call(this, opts);
-}
+function setValue(key, value) {
+  localStorage.setItem(key, value);
+};
 
-_.extend(LocalPuzon.prototype, Backbone.Model, {
-  initialize: function(options){
-    this.lessonName = options.lessonName;
-    this.time = 0;
-  },
-  getLessonTime: function() {
-    return this.time;
-  },
-  setLessonTime: function(time) {
-    this.time = time;
-  }
-})
+function getValue(key) {
+  return localStorage.getItem(key);
+};
+var LocalPuzon = {
+  set: setValue,
+  get: getValue
+};
+
 module.exports = LocalPuzon;
